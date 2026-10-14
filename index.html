@@ -3,25 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STUDY ARCHIVE</title>
+<title>ARCHIVE</title>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-sky: #b8e2f2;       /* 綺麗な水色基調 */
+    --bg-sky: #c1f0f7;       /* 最初の綺麗な水色 */
     --card-bg: #ffffff;      
-    --border-main: #2b4c6f;  /* エモい深めの青みアウトライン */
-    --accent-pink: #ff8fab;  /* 桜や差し色のピンク */
-    --text-main: #243447;    
+    --border-main: #3d5a80;  /* 綺麗な青みの枠線 */
+    --accent-pink: #ff8fab;  /* 差し色のピンク */
+    --text-main: #2b3a4a;    
   }
 
   body {
     background-color: var(--bg-sky);
-    /* 背景に桜のドット（十字の形）を散りばめるパターン */
-    background-image: 
-      radial-gradient(var(--accent-pink) 20%, transparent 21%),
-      radial-gradient(var(--accent-pink) 20%, transparent 21%);
-    background-size: 40px 40px;
-    background-position: 0 0, 20px 20px;
     color: var(--text-main);
     font-family: 'DotGothic16', monospace;
     line-height: 1.8;
@@ -30,7 +24,7 @@
   }
 
   .wrap {
-    max-width: 600px;
+    max-width: 540px;
     margin: 0 auto;
     padding: 40px 16px 60px;
   }
@@ -38,10 +32,10 @@
   /* シンプルなタイトル */
   header {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     background: #ffffff;
     border: 4px solid var(--border-main);
-    border-radius: 12px;
+    border-radius: 14px;
     padding: 16px;
     box-shadow: 0 5px 0px var(--border-main);
   }
@@ -54,129 +48,76 @@
     text-shadow: 2px 2px 0px var(--border-main);
   }
 
-  /* レポートリスト（タップで一発PDFオープン） */
+  /* レポートリスト（コンパクトでスマートなボタン） */
   .grid {
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    margin-bottom: 36px;
+    gap: 12px;
+    margin-bottom: 32px;
   }
 
   .card {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background: var(--card-bg);
-    border: 4px solid var(--border-main);
-    border-radius: 12px;
-    padding: 16px 20px;
+    border: 3px solid var(--border-main);
+    border-radius: 10px;
+    padding: 12px 18px;
     text-decoration: none;
     color: var(--text-main);
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: bold;
-    box-shadow: 0 5px 0px var(--border-main);
+    box-shadow: 0 4px 0px var(--border-main);
     transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s;
   }
 
   .card:hover {
     transform: translateY(2px);
-    box-shadow: 0 3px 0px var(--border-main);
+    box-shadow: 0 2px 0px var(--border-main);
     background: #fff5f8;
     color: var(--accent-pink);
   }
 
-  /* 下部のドット絵（メガネ・本・電卓を持った勉強する男の子） */
-  .art-box {
+  .card-arrow {
+    font-size: 0.85rem;
+    color: var(--accent-pink);
+  }
+
+  /* ▼ 後で自分で描いた絵を挿入するためのエリア（一番下） */
+  .pixel-art-container {
     background: #ffffff;
     border: 4px solid var(--border-main);
-    border-radius: 16px;
-    padding: 24px 16px;
+    border-radius: 14px;
+    padding: 16px;
     text-align: center;
-    box-shadow: 0 6px 0px var(--border-main);
+    box-shadow: 0 5px 0px var(--border-main);
   }
 
-  .pixel-canvas {
-    width: 140px;
-    height: 110px;
+  /* 自分で描いた画像をアップロードしたあと、ここのimgタグに反映されます */
+  .pixel-art-container img {
+    max-width: 100%;
+    height: auto;
+    image-rendering: pixelated; /* ドット絵をくっきり綺麗に見せる設定 */
+    display: block;
     margin: 0 auto;
-    background: #e1f3fb;
-    border: 3px solid var(--border-main);
+  }
+
+  /* 画像がまだ無いとき用のプレースホルダー */
+  .art-placeholder {
+    padding: 20px;
+    color: #8c7b9c;
+    font-size: 0.85rem;
+    border: 2px dashed #b0c4de;
     border-radius: 8px;
-    position: relative;
-  }
-
-  /* 勉強机 */
-  .desk {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    width: 100px;
-    height: 10px;
-    background: #6b4423;
-    border: 2px solid var(--border-main);
-  }
-
-  /* 開いた本 / 電卓 */
-  .book-item {
-    position: absolute;
-    bottom: 30px;
-    left: 55px;
-    width: 28px;
-    height: 10px;
-    background: #fff;
-    border: 2px solid var(--border-main);
-  }
-
-  /* 男の子の体（水色パーカー） */
-  .boy-body {
-    position: absolute;
-    bottom: 20px;
-    left: 53px;
-    width: 30px;
-    height: 22px;
-    background: #4ab3f4;
-    border: 2px solid var(--border-main);
-    border-radius: 8px 8px 0 0;
-  }
-
-  /* 男の子の顔 */
-  .boy-head {
-    position: absolute;
-    bottom: 40px;
-    left: 56px;
-    width: 24px;
-    height: 22px;
-    background: #ffdbac;
-    border: 2px solid var(--border-main);
-    border-radius: 50% 50% 40% 40%;
-  }
-
-  /* メガネ */
-  .glasses {
-    position: absolute;
-    bottom: 48px;
-    left: 60px;
-    width: 14px;
-    height: 6px;
-    border: 2px solid var(--border-main);
-    background: transparent;
-  }
-
-  /* 髪型 */
-  .boy-hair {
-    position: absolute;
-    bottom: 58px;
-    left: 55px;
-    width: 26px;
-    height: 10px;
-    background: #5c4033;
-    border: 2px solid var(--border-main);
-    border-radius: 50% 50% 0 0;
+    background: #f7fcfe;
   }
 
   footer {
-    margin-top: 32px;
+    margin-top: 28px;
     text-align: center;
     font-size: 0.75rem;
-    color: #4a6fa5;
+    color: #5a6b7c;
   }
 </style>
 </head>
@@ -189,21 +130,35 @@
 
   <main>
     <div class="grid">
-      <a href="report-2026-01.pdf" target="_blank" class="card">レポート 01</a>
-      <a href="report-2026-02.pdf" target="_blank" class="card">レポート 02</a>
-      <a href="report-2026-03.pdf" target="_blank" class="card">レポート 03</a>
-      <a href="report-2026-04.pdf" target="_blank" class="card">レポート 04</a>
+      <a href="report-2026-01.pdf" target="_blank" class="card">
+        <span>レポート 01</span>
+        <span class="card-arrow">▶</span>
+      </a>
+      <a href="report-2026-02.pdf" target="_blank" class="card">
+        <span>レポート 02</span>
+        <span class="card-arrow">▶</span>
+      </a>
+      <a href="report-2026-03.pdf" target="_blank" class="card">
+        <span>レポート 03</span>
+        <span class="card-arrow">▶</span>
+      </a>
+      <a href="report-2026-04.pdf" target="_blank" class="card">
+        <span>レポート 04</span>
+        <span class="card-arrow">▶</span>
+      </a>
     </div>
 
-    <!-- ▼ 一番下のピクセルアート（勉強するメガネの男の子 ＆ 桜の背景） -->
-    <div class="art-box">
-      <div class="pixel-canvas">
-        <div class="desk"></div>
-        <div class="book-item"></div>
-        <div class="boy-body"></div>
-        <div class="boy-head"></div>
-        <div class="glasses"></div>
-        <div class="boy-hair"></div>
+    <!-- ▼ 後で自分で描いたドット絵を載せる場所 -->
+    <div class="pixel-art-container">
+      <!-- 
+        【使い方】
+        あとで自分で描いたドット絵の画像（例: boy.png）をGitHubにアップロードしたら、
+        下の「src="my-pixel-art.png"」の部分をご自身の画像の名前に書き換えてください。
+      -->
+      <img src="my-pixel-art.png" alt="My Pixel Art" onerror="this.style.display='none'; document.getElementById('no-art').style.display='block';">
+      
+      <div id="no-art" class="art-placeholder" style="display:none;">
+        ここに自分で描いたドット絵が表示されます<br>（画像をアップロードしてファイル名を合わせてね）
       </div>
     </div>
   </main>
