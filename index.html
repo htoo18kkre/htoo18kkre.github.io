@@ -3,23 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DREAM ARCHIVE</title>
-<!-- レトロで可愛いドット風フォント -->
+<title>STUDY ARCHIVE</title>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-sky: #c1f0f7;       /* 優しい水色（背景） */
-    --card-bg: #ffffff;      /* カードの中身は白 */
-    --border-main: #4a3b5c;  /* ドット絵風の濃い紫色のアウトライン */
-    --accent-pink: #ff8fab;  /* カービィ風のポップなピンク */
-    --accent-blue: #70d6ff;  /* 綺麗な水色のアクセント */
-    --text-main: #3a2e47;    /* 読みやすい濃いパープルグレー */
+    --bg-sky: #bfe9f7;       /* 基本の綺麗な水色 */
+    --card-bg: #ffffff;      
+    --border-main: #3d5a80;  /* 落ち着いた青みの枠線 */
+    --accent-pink: #ff8fab;  /* 桜や差し色のピンク */
+    --text-main: #2b3a4a;    
   }
 
   body {
     background-color: var(--bg-sky);
-    /* カービィの背景にあるようなドットのパターンをうっすら表現 */
-    background-image: radial-gradient(#a2e4f0 15%, transparent 16%), radial-gradient(#a2e4f0 15%, transparent 16%);
+    /* ドット調のうっすらした背景パターン */
+    background-image: radial-gradient(#a2e0f5 15%, transparent 16%), radial-gradient(#a2e0f5 15%, transparent 16%);
     background-size: 20px 20px;
     background-position: 0 0, 10px 10px;
     color: var(--text-main);
@@ -30,140 +28,158 @@
   }
 
   .wrap {
-    max-width: 640px;
+    max-width: 600px;
     margin: 0 auto;
-    padding: 40px 16px 80px;
+    padding: 40px 16px 60px;
   }
 
-  /* ヘルパー（タイトル部分） */
+  /* ヘッダー（タイトルのみでシンプルに） */
   header {
     text-align: center;
-    margin-bottom: 36px;
+    margin-bottom: 32px;
     background: #ffffff;
     border: 4px solid var(--border-main);
     border-radius: 16px;
-    padding: 24px 16px;
+    padding: 20px 16px;
     box-shadow: 0 6px 0px var(--border-main);
   }
 
   h1 {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     letter-spacing: 0.1em;
-    margin: 0 0 6px;
+    margin: 0;
     color: var(--accent-pink);
     text-shadow: 2px 2px 0px var(--border-main);
   }
 
-  .sub {
-    font-size: 0.88rem;
-    color: #6c5b7b;
-    margin: 0;
-  }
-
-  /* セクション見出し */
-  h2 {
-    font-size: 1.05rem;
-    letter-spacing: 0.08em;
-    text-align: center;
-    color: #ffffff;
-    background: var(--accent-blue);
-    border: 3px solid var(--border-main);
-    border-radius: 12px;
-    padding: 8px;
-    margin: 32px 0 20px;
-    box-shadow: 0 4px 0px var(--border-main);
-    text-shadow: 1px 1px 0px var(--border-main);
-  }
-
-  /* カード（資料一覧） */
+  /* レポートリスト（タイトル一発タップ用） */
   .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 40px;
   }
 
+  /* レポートカード自体がリンクになっており、タップで一発でPDFが開く */
   .card {
     display: block;
     background: var(--card-bg);
     border: 4px solid var(--border-main);
     border-radius: 14px;
-    padding: 18px;
+    padding: 16px 20px;
     text-decoration: none;
-    color: inherit;
-    box-shadow: 0 6px 0px var(--border-main);
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    color: var(--text-main);
+    font-size: 1.05rem;
+    font-weight: bold;
+    box-shadow: 0 5px 0px var(--border-main);
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s;
   }
 
-  /* 押したときにポコっと沈む可愛いアクション */
   .card:hover {
     transform: translateY(2px);
-    box-shadow: 0 4px 0px var(--border-main);
-    background: #fff9fb;
-  }
-
-  .card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-
-  .tag {
-    font-size: 0.72rem;
-    background: var(--accent-pink);
-    color: #ffffff;
-    padding: 2px 10px;
-    font-weight: bold;
-    border: 2px solid var(--border-main);
-    border-radius: 8px;
-  }
-
-  .date {
-    font-size: 0.78rem;
-    color: #8c7b9c;
-  }
-
-  .card h3 {
-    font-size: 1.05rem;
-    margin: 4px 0 6px;
-    color: var(--text-main);
-  }
-
-  .card p {
-    font-size: 0.85rem;
-    color: #6c5b7b;
-    margin: 0 0 14px;
-  }
-
-  /* ポップな「よむ！」ボタン */
-  .pixel-btn {
-    display: inline-block;
-    background: var(--accent-blue);
-    color: var(--border-main);
-    font-size: 0.82rem;
-    font-weight: bold;
-    padding: 5px 14px;
-    border: 3px solid var(--border-main);
-    border-radius: 10px;
     box-shadow: 0 3px 0px var(--border-main);
-    float: right;
+    background: #fff5f8; /* ホバー時にうっすらピンクに */
+    color: var(--accent-pink);
   }
 
-  .card:hover .pixel-btn {
+  /* 下部のピクセルアート・演出エリア */
+  .art-section {
+    background: #ffffff;
+    border: 4px solid var(--border-main);
+    border-radius: 16px;
+    padding: 24px 16px;
+    text-align: center;
+    box-shadow: 0 6px 0px var(--border-main);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .art-title {
+    font-size: 0.85rem;
+    color: var(--accent-pink);
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ドット絵風の男の子と勉強机のCSSアート表現 */
+  .pixel-boy-stage {
+    width: 140px;
+    height: 100px;
+    margin: 0 auto;
+    background: #e8f4f8;
+    border: 3px solid var(--border-main);
+    border-radius: 8px;
+    position: relative;
+    image-rendering: pixelated;
+  }
+
+  /* 机 */
+  .desk {
+    position: absolute;
+    bottom: 25px;
+    left: 30px;
+    width: 80px;
+    height: 12px;
+    background: #8b5a2b;
+    border: 2px solid var(--border-main);
+  }
+  /* 本 */
+  .book {
+    position: absolute;
+    bottom: 37px;
+    left: 55px;
+    width: 24px;
+    height: 8px;
     background: var(--accent-pink);
-    color: #ffffff;
+    border: 2px solid var(--border-main);
+  }
+  /* 男の子の頭（パーカー等のイメージでピンクの差し色） */
+  .boy-head {
+    position: absolute;
+    bottom: 43px;
+    left: 58px;
+    width: 18px;
+    height: 18px;
+    background: #ffb7b2;
+    border: 2px solid var(--border-main);
+    border-radius: 50%;
+  }
+  /* 男の子の服（水色のパーカー） */
+  .boy-body {
+    position: absolute;
+    bottom: 25px;
+    left: 53px;
+    width: 28px;
+    height: 18px;
+    background: #70d6ff;
+    border: 2px solid var(--border-main);
+    border-radius: 6px 6px 0 0;
+  }
+
+  /* 桜の花びらが舞うアニメーション */
+  .sakura {
+    position: absolute;
+    background: var(--accent-pink);
+    border: 1px solid var(--border-main);
+    border-radius: 50% 0 50% 0;
+    opacity: 0.8;
+    animation: fall 4s linear infinite;
+  }
+  .s1 { width: 8px; height: 8px; top: -10px; left: 20%; animation-delay: 0s; }
+  .s2 { width: 6px; height: 6px; top: -10px; left: 60%; animation-delay: 1.5s; }
+  .s3 { width: 7px; height: 7px; top: -10px; left: 80%; animation-delay: 3s; }
+
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+    100% { transform: translateY(120px) rotate(360deg); opacity: 0; }
   }
 
   /* フッター */
   footer {
-    margin-top: 50px;
+    margin-top: 36px;
     text-align: center;
     font-size: 0.75rem;
     color: #6c5b7b;
-    background: rgba(255,255,255,0.6);
-    border: 2px solid var(--border-main);
-    border-radius: 10px;
-    padding: 10px;
   }
 </style>
 </head>
@@ -171,52 +187,51 @@
 <div class="wrap">
   
   <header>
-    <h1>★ DREAM ARCHIVE ★</h1>
-    <p class="sub">- 水色とピンクの資料置き場 -</p>
+    <h1>★ MY ARCHIVE ★</h1>
   </header>
 
   <main>
-    <h2>✦ SELECT STAGE (MATERIALS) ✦</h2>
     <div class="grid">
-      
-      <!-- ▼ 資料 01 -->
+      <!-- ▼ レポート 01（タップで一発オープン） -->
       <a href="report-2026-01.pdf" target="_blank" class="card">
-        <div class="card-top">
-          <span class="tag">PDF</span>
-          <span class="date">2026.10</span>
-        </div>
-        <h3>▶ レポート 01</h3>
-        <p>ここに資料の説明を書きます。クリックするとPDFが開きます。</p>
-        <div style="overflow:hidden;"><span class="pixel-btn">⭐ よむ！</span></div>
+        レポート 01
       </a>
 
-      <!-- ▼ 資料 02 -->
+      <!-- ▼ レポート 02 -->
       <a href="report-2026-02.pdf" target="_blank" class="card">
-        <div class="card-top">
-          <span class="tag">PDF</span>
-          <span class="date">2026.10</span>
-        </div>
-        <h3>▶ レポート 02</h3>
-        <p>ここに資料の説明を書きます。クリックするとPDFが開きます。</p>
-        <div style="overflow:hidden;"><span class="pixel-btn">⭐ よむ！</span></div>
+        レポート 02
       </a>
 
-      <!-- ▼ 資料 03 -->
+      <!-- ▼ レポート 03 -->
       <a href="report-2026-03.pdf" target="_blank" class="card">
-        <div class="card-top">
-          <span class="tag">PDF</span>
-          <span class="date">2026.10</span>
-        </div>
-        <h3>▶ レポート 03</h3>
-        <p>ここに資料の説明を書きます。クリックするとPDFが開きます。</p>
-        <div style="overflow:hidden;"><span class="pixel-btn">⭐ よむ！</span></div>
+        レポート 03
       </a>
 
+      <!-- ▼ レポート 04 -->
+      <a href="report-2026-04.pdf" target="_blank" class="card">
+        レポート 04
+      </a>
+    </div>
+
+    <!-- ▼ 一番下のピクセルアートエリア（勉強する男の子 ＆ 舞う桜） -->
+    <div class="art-section">
+      <!-- 桜の舞い落ちる演出 -->
+      <div class="sakura s1"></div>
+      <div class="sakura s2"></div>
+      <div class="sakura s3"></div>
+
+      <div class="art-title">~ STUDY TIME ~</div>
+      <div class="pixel-boy-stage">
+        <div class="desk"></div>
+        <div class="book"></div>
+        <div class="boy-body"></div>
+        <div class="boy-head"></div>
+      </div>
     </div>
   </main>
 
   <footer>
-    &copy; 2026 YOUR NAME // DREAM WORLD
+    &copy; 2026 YOUR NAME
   </footer>
 
 </div>
