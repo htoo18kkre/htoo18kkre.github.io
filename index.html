@@ -9,10 +9,13 @@
   .wrap { max-width:720px; margin:0 auto; padding:56px 20px 80px; }
   header { text-align:center; margin-bottom:48px; }
   h1 { font-size:1.6rem; letter-spacing:0.1em; margin:0 0 8px; }
-  .sub { font-size:0.88rem; color:#666; margin:0 0 20px; }
-  .links { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:32px; }
-  .links a { padding:5px 15px; font-size:0.8rem; color:#222; text-decoration:none; border:1px solid #e0e0e0; border-radius:99px; background:#fff; }
-  .hero { width:100%; max-width:520px; margin:0 auto; aspect-ratio:16/9; background:#efefef; border:1px solid #e0e0e0; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#777; font-size:0.85rem; }
+  .sub { font-size:0.88rem; color:#666; margin:0 0 24px; }
+  
+  /* メインビジュアル（ここにピクセルアートやイラストが入ります） */
+  .hero-image { width:100%; max-width:480px; margin:0 auto; border-radius:8px; overflow:hidden; border:1px solid #e0e0e0; background:#fff; box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+  .hero-image img { width:100%; height:auto; display:block; image-rendering: pixelated; /* ピクセルアートをくっきりドットで見せたい場合の設定 */ }
+  .hero-placeholder { width:100%; aspect-ratio:16/9; background:#efefef; display:flex; align-items:center; justify-content:center; color:#777; font-size:0.85rem; }
+
   h2 { font-size:1rem; letter-spacing:0.08em; text-align:center; border-bottom:1px solid #e0e0e0; padding-bottom:10px; margin-bottom:24px; }
   .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; }
   .card { display:block; background:#fff; border:1px solid #e0e0e0; border-radius:8px; padding:18px; text-decoration:none; color:inherit; }
@@ -20,38 +23,44 @@
   .date { font-size:0.75rem; color:#777; }
   .card h3 { font-size:1rem; margin:10px 0 6px; }
   .card p { font-size:0.84rem; color:#666; margin:0 0 12px; }
-  .more { font-size:0.8rem; font-weight:bold; text-align:right; }
+  .more { font-size:0.8,rem; font-weight:bold; text-align:right; }
   footer { margin-top:64px; text-align:center; font-size:0.75rem; color:#888; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <h1>HARUTO ARCHIVE</h1>
-    <p class="sub">個人制作の資料・スライド・まとめノート置き場</p>
-    <nav class="links">
-      <a href="https://x.com/" target="_blank">X</a>
-      <a href="https://instagram.com/" target="_blank">Instagram</a>
-      <a href="https://note.com/" target="_blank">note</a>
-    </nav>
-    <div class="hero">Main Visual / Photo Area</div>
+    <h1>YOUR NAME / GALLERY</h1>
+    <p class="sub">ピクセルアート・イラスト・作成資料の置き場</p>
+    
+    <!-- ▼ ピクセルアートやイラストをここに表示します -->
+    <div class="hero-image">
+      <!-- 絵をアップロードしたら、下の「my-art.png」をあなたの画像の名前に書き換えてね -->
+      <img src="my-art.png" alt="My Art" onerror="this.style.display='none'; document.getElementById('placeholder').style.display='flex';">
+      <div id="placeholder" class="hero-placeholder" style="display:none;">ここにピクセルアートの画像が表示されます</div>
+    </div>
   </header>
 
   <main>
-    <h2>MATERIALS / ARCHIVE</h2>
+    <h2>WORKS & MATERIALS</h2>
     <div class="grid">
-      <a href="sample.pdf" target="_blank" class="card">
+      
+      <!-- ▼ 資料・作品カード 1 -->
+      <a href="report-2026-01.pdf" target="_blank" class="card">
         <div><span class="tag">PDF</span><span class="date">2026.10</span></div>
-        <h3>サンプル資料タイトル 01</h3>
-        <p>ここに資料の簡単な説明を書きます。タップするとPDFが別タブで開きます。</p>
-        <div class="more">資料を開く →</div>
+        <h3>資料・作品タイトル 01</h3>
+        <p>ここに資料やイラスト集の説明を書きます。</p>
+        <div class="more">開く →</div>
       </a>
-      <a href="slide.pdf" target="_blank" class="card">
-        <div><span class="tag">SLIDE</span><span class="date">2026.10</span></div>
-        <h3>発表スライド・まとめ資料</h3>
-        <p>作成したスライドのPDFや共有リンクをここに設定できます。</p>
-        <div class="more">資料を開く →</div>
+
+      <!-- ▼ 資料・作品カード 2 -->
+      <a href="report-2026-02.pdf" target="_blank" class="card">
+        <div><span class="tag">PDF</span><span class="date">2026.10</span></div>
+        <h3>資料・作品タイトル 02</h3>
+        <p>ここに説明を書きます。</p>
+        <div class="more">開く →</div>
       </a>
+
     </div>
   </main>
 
