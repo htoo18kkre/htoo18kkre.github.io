@@ -7,141 +7,108 @@
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 <style>
   body {
-    /* あの綺麗な水色の背景 */
-    background-color: #70d6ff;
+    /* 画像と同じ鮮やかな水色の背景 */
+    background-color: #48b2e5;
     color: #ffffff;
     font-family: 'DotGothic16', monospace;
     margin: 0;
     padding: 0;
+    -webkit-font-smoothing: none;
   }
 
   .wrap {
-    max-width: 480px;
+    max-width: 420px;
     margin: 0 auto;
-    padding: 48px 16px 64px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 56px 32px 64px;
   }
 
-  /* タイトル */
-  h1 {
-    font-size: 1.6rem;
-    letter-spacing: 0.1em;
-    margin: 0 0 32px;
-    text-shadow: 2px 2px 0px #2b3a4a;
-    text-align: center;
-  }
-
-  /* クリックボタンの並び（枠なし、画像そのまま置ける仕様） */
-  .button-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    width: 100%;
-    max-width: 320px;
+  /* タイトル周り（画像と同じ左寄せ・枠なし・白ドット文字） */
+  header {
     margin-bottom: 48px;
   }
 
-  .pixel-btn-link {
-    display: block;
+  h1 {
+    font-size: 2rem;
+    letter-spacing: 0.08em;
+    margin: 0;
+    font-weight: normal;
+  }
+
+  /* ボタンのリスト（横長にせず、左側にコンパクトに並べる） */
+  .link-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    margin-bottom: 64px;
+  }
+
+  /* 1つ1つのリンク（バッジ＋右横の文字） */
+  .pixel-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
     text-decoration: none;
-    transition: transform 0.1s ease;
-  }
-
-  .pixel-btn-link:hover {
-    transform: scale(1.03);
-  }
-
-  /* ボタン用のドット絵画像（自分で描いたものをここに反映） */
-  .pixel-btn-link img {
-    width: 100%;
-    height: auto;
-    display: block;
-    image-rendering: pixelated;
-  }
-
-  /* テキストで代用する場合の仮ボタン（画像を作るまでの仮置き） */
-  .temp-btn {
-    background: #ff8fab;
     color: #ffffff;
-    border: 3px solid #ffffff;
-    border-radius: 8px;
-    padding: 12px;
-    text-align: center;
-    font-weight: bold;
-    box-shadow: 0 4px 0px #2b3a4a;
+    transition: transform 0.1s steps(2, start);
   }
 
-  /* 一番下に置くドット絵の男の子（枠なしでスッキリ配置） */
-  .art-area {
-    width: 100%;
-    max-width: 280px;
-    text-align: center;
-    margin-top: 16px;
+  .pixel-item:hover {
+    transform: translateX(4px);
   }
 
-  .art-area img {
-    width: 100%;
-    height: auto;
-    display: block;
-    image-rendering: pixelated;
+  /* ドット絵風のオリジナルバッジ（画像のボタン形状を再現） */
+  .pixel-badge {
+    display: inline-flex;
+    align-items: stretch;
+    height: 46px;
+    position: relative;
+    /* 四隅を1ドット分削ってピクセルアートの角丸感を出す */
+    clip-path: polygon(
+      0 4px, 4px 4px, 4px 0,
+      calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
+      100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
+      4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
+    );
   }
 
-  footer {
-    margin-top: 48px;
-    font-size: 0.75rem;
+  /* バッジのメイン部分（文字が入るところ） */
+  .badge-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    font-size: 1.25rem;
+    letter-spacing: 0.06em;
     color: #ffffff;
-    opacity: 0.8;
-    text-align: center;
+    line-height: 1;
   }
-</style>
-</head>
-<body>
-<div class="wrap">
-  
-  <h1>ARCHIVE</h1>
 
-  <!-- ▼ スライド・レポートを開くボタン群（画像に差し替え可能） -->
-  <div class="button-list">
-    
-    <!-- 01: スライド -->
-    <a href="report-2026-01.pdf" target="_blank" class="pixel-btn-link">
-      <!-- 自分でボタン画像（例: btn-slide01.png）を作ったら差し替えてね -->
-      <img src="btn-slide01.png" alt="Slide 01" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-      <div class="temp-btn" style="display:none;">▶ スライド 01</div>
-    </a>
+  /* バッジの右端のタブ部分（上下に白いドットが2つあるデザイン） */
+  .badge-tab {
+    width: 18px;
+    position: relative;
+  }
 
-    <!-- 02: スライド -->
-    <a href="report-2026-02.pdf" target="_blank" class="pixel-btn-link">
-      <img src="btn-slide02.png" alt="Slide 02" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-      <div class="temp-btn" style="display:none;">▶ スライド 02</div>
-    </a>
+  /* 上下の白い2つのドット */
+  .badge-tab::before,
+  .badge-tab::after {
+    content: "";
+    position: absolute;
+    right: 5px;
+    width: 4px;
+    height: 4px;
+    background-color: #ffffff;
+  }
+  .badge-tab::before { top: 6px; }
+  .badge-tab::after { bottom: 6px; }
 
-    <!-- 03: スライド -->
-    <a href="report-2026-03.pdf" target="_blank" class="pixel-btn-link">
-      <img src="btn-slide03.png" alt="Slide 03" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-      <div class="temp-btn" style="display:none;">▶ スライド 03</div>
-    </a>
+  /* ✦ スライド用の色（カービィ風の可愛いピンク） */
+  .type-slide .badge-main { background-color: #ff6b9d; }
+  .type-slide .badge-tab { background-color: #ff9ebb; }
 
-    <!-- 04: レポート -->
-    <a href="report-2026-04.pdf" target="_blank" class="pixel-btn-link">
-      <img src="btn-report04.png" alt="Report 04" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-      <div class="temp-btn" style="display:none; background:#70d6ff; border-color:#fff;">▶ レポート 04</div>
-    </a>
+  /* ✦ レポート用の色（アクセントになるレトロパープル） */
+  .type-report .badge-main { background-color: #7b68ee; }
+  .type-report .badge-tab { background-color: #a496f7; }
 
-  </div>
-
-  <!-- ▼ 一番下に配置するドット絵の男の子（枠なし） -->
-  <div class="art-area">
-    <!-- 自分で描いた男の子の画像（例: boy.png）をアップロードしてね -->
-    <img src="boy.png" alt="Pixel Art Boy" onerror="this.style.display='none';">
-  </div>
-
-  <footer>
-    &copy; 2026 YOUR NAME
-  </footer>
-
-</div>
-</body>
-</html>
+  /* バッジの
