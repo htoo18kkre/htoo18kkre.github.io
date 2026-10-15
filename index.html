@@ -111,4 +111,85 @@
   .type-report .badge-main { background-color: #7b68ee; }
   .type-report .badge-tab { background-color: #a496f7; }
 
-  /* バッジの
+  /* バッジの右横に表示されるタイトル文字 */
+  .item-label {
+    font-size: 1.05rem;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  /* 一番下のイラストエリア（枠なし・右寄せ気味に配置して画像の雰囲気に） */
+  .art-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .art-area img {
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+    display: block;
+    image-rendering: pixelated;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  
+  <header>
+    <h1>ARCHIVE</h1>
+  </header>
+
+  <main>
+    <div class="link-list">
+      
+      <!-- ▼ 01: スライド -->
+      <a href="report-2026-01.pdf" target="_blank" class="pixel-item">
+        <div class="pixel-badge type-slide">
+          <div class="badge-main">SLIDE 01</div>
+          <div class="badge-tab"></div>
+        </div>
+        <span class="item-label">スライド 01</span>
+      </a>
+
+      <!-- ▼ 02: スライド -->
+      <a href="report-2026-02.pdf" target="_blank" class="pixel-item">
+        <div class="pixel-badge type-slide">
+          <div class="badge-main">SLIDE 02</div>
+          <div class="badge-tab"></div>
+        </div>
+        <span class="item-label">スライド 02</span>
+      </a>
+
+      <!-- ▼ 03: スライド -->
+      <a href="report-2026-03.pdf" target="_blank" class="pixel-item">
+        <div class="pixel-badge type-slide">
+          <div class="badge-main">SLIDE 03</div>
+          <div class="badge-tab"></div>
+        </div>
+        <span class="item-label">スライド 03</span>
+      </a>
+
+      <!-- ▼ 04: レポート -->
+      <a href="report-2026-04.pdf" target="_blank" class="pixel-item">
+        <div class="pixel-badge type-report">
+          <div class="badge-main">REPORT</div>
+          <div class="badge-tab"></div>
+        </div>
+        <span class="item-label">レポート 04</span>
+      </a>
+
+    </div>
+
+    <!-- ▼ 一番下のドット絵（枠なし・画像をアップロードしたら表示されます） -->
+    <div class="art-area">
+      <!-- 自分で描いた画像（例: boy.png）をアップロードしたら名前を合わせてね -->
+      <img src="boy.png" alt="Pixel Art" onerror="this.style.display='none';">
+    </div>
+  </main>
+
+</div>
+</body>
+</html>
