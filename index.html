@@ -7,21 +7,12 @@
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 <style>
   body {
-    /* 夜の星空グラデーション＋小さなドット絵の星屑 */
-    background-color: #0d1126;
-    background-image: 
-      radial-gradient(#ffffff 1px, transparent 1px),
-      radial-gradient(#ffe680 1px, transparent 1px),
-      radial-gradient(#8be9fd 1px, transparent 1px),
-      linear-gradient(180deg, #090c1a 0%, #162142 60%, #1e2d59 100%);
-    background-size: 90px 90px, 140px 140px, 190px 190px, 100% 100%;
-    background-position: 0 0, 30px 50px, 70px 20px, 0 0;
-    background-attachment: fixed;
+    /* 濃すぎず薄すぎない、ドット絵が映える絶妙な紺色の単色塗りつぶし */
+    background-color: #263e73;
     color: #ffffff;
     font-family: 'DotGothic16', monospace;
     margin: 0;
     padding: 0;
-    min-height: 100vh;
     -webkit-font-smoothing: none;
   }
 
@@ -31,21 +22,19 @@
     padding: 56px 32px 64px;
   }
 
-  /* タイトル（夜空に浮かぶゴールドのドット文字） */
+  /* タイトル（画像と同じフラットな白ドット文字） */
   header {
-    margin-bottom: 44px;
+    margin-bottom: 48px;
   }
 
   h1 {
     font-size: 2rem;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.08em;
     margin: 0;
     font-weight: normal;
-    color: #ffe680;
-    text-shadow: 3px 3px 0px #000000;
   }
 
-  /* ボタンリスト（左寄せ・コンパクト） */
+  /* ボタンのリスト */
   .link-list {
     display: flex;
     flex-direction: column;
@@ -67,55 +56,67 @@
     transform: translateX(4px);
   }
 
-  /* ✦ オリジナル：RPG風のドット絵バッジ */
-  .pixel-btn {
+  /* 画像と同じドット絵ボタン形状（四隅をドット階段状にカット） */
+  .pixel-badge {
     display: inline-flex;
+    align-items: stretch;
+    height: 46px;
+    position: relative;
+    clip-path: polygon(
+      0 6px, 3px 6px, 3px 3px, 6px 3px, 6px 0,
+      calc(100% - 6px) 0, calc(100% - 6px) 3px, calc(100% - 3px) 3px, calc(100% - 3px) 6px, 100% 6px,
+      100% calc(100% - 6px), calc(100% - 3px) calc(100% - 6px), calc(100% - 3px) calc(100% - 3px), calc(100% - 6px) calc(100% - 3px), calc(100% - 6px) 100%,
+      6px 100%, 6px calc(100% - 3px), 3px calc(100% - 3px), 3px calc(100% - 6px), 0 calc(100% - 6px)
+    );
+  }
+
+  /* ボタンのメイン部分 */
+  .badge-main {
+    display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px;
-    padding: 0 14px;
-    font-size: 1.1rem;
-    letter-spacing: 0.08em;
+    padding: 0 16px;
+    font-size: 1.3rem;
+    letter-spacing: 0.06em;
     color: #ffffff;
+    line-height: 1;
+  }
+
+  /* ボタン右端の色違いタブ */
+  .badge-tab {
+    width: 18px;
     position: relative;
-    border: 2px solid #ffffff;
-    box-shadow: 
-      inset 0 3px 0 rgba(255, 255, 255, 0.35),
-      inset 0 -3px 0 rgba(0, 0, 0, 0.35),
-      4px 4px 0px #000000;
   }
 
-  /* ボタンの左端に小さな星のドット飾り */
-  .pixel-btn::before {
-    content: "✦";
-    font-size: 0.85rem;
-    margin-right: 8px;
-    color: #ffe680;
+  /* 右端タブの上下2つの白いドット */
+  .badge-tab::before,
+  .badge-tab::after {
+    content: "";
+    position: absolute;
+    right: 5px;
+    width: 4px;
+    height: 4px;
+    background-color: #ffffff;
   }
+  .badge-tab::before { top: 7px; }
+  .badge-tab::after { bottom: 7px; }
 
-  /* スライド用（夜空に映えるマジックルビー） */
-  .type-slide {
-    background-color: #d9386a;
-  }
+  /* ✦ スライド用ボタンの色（紺色に映えるコーラルピンク） */
+  .type-slide .badge-main { background-color: #f24b59; }
+  .type-slide .badge-tab { background-color: #ff8e80; }
 
-  /* レポート用（魔導書風のロイヤルブルー） */
-  .type-report {
-    background-color: #3b5dc9;
-  }
+  /* ✦ レポート用ボタンの色（紺色に映えるライムグリーン） */
+  .type-report .badge-main { background-color: #38b814; }
+  .type-report .badge-tab { background-color: #72e647; }
 
   /* ボタン右横のタイトル文字 */
   .item-label {
     font-size: 1.05rem;
     letter-spacing: 0.05em;
-    text-shadow: 2px 2px 0px #000000;
     white-space: nowrap;
   }
 
-  .pixel-item:hover .item-label {
-    color: #ffe680;
-  }
-
-  /* 一番下のドラゴン・魔法使いのドット絵エリア（枠なし） */
+  /* 一番下のドット絵エリア（枠なし） */
   .art-area {
     width: 100%;
     display: flex;
@@ -144,33 +145,44 @@
       
       <!-- ▼ 01: スライド -->
       <a href="report-2026-01.pdf" target="_blank" class="pixel-item">
-        <div class="pixel-btn type-slide">SLIDE 01</div>
+        <div class="pixel-badge type-slide">
+          <div class="badge-main">SLIDE 01</div>
+          <div class="badge-tab"></div>
+        </div>
         <span class="item-label">スライド 01</span>
       </a>
 
       <!-- ▼ 02: スライド -->
       <a href="report-2026-02.pdf" target="_blank" class="pixel-item">
-        <div class="pixel-btn type-slide">SLIDE 02</div>
+        <div class="pixel-badge type-slide">
+          <div class="badge-main">SLIDE 02</div>
+          <div class="badge-tab"></div>
+        </div>
         <span class="item-label">スライド 02</span>
       </a>
 
       <!-- ▼ 03: スライド -->
       <a href="report-2026-03.pdf" target="_blank" class="pixel-item">
-        <div class="pixel-btn type-slide">SLIDE 03</div>
+        <div class="pixel-badge type-slide">
+          <div class="badge-main">SLIDE 03</div>
+          <div class="badge-tab"></div>
+        </div>
         <span class="item-label">スライド 03</span>
       </a>
 
       <!-- ▼ 04: レポート -->
       <a href="report-2026-04.pdf" target="_blank" class="pixel-item">
-        <div class="pixel-btn type-report">REPORT</div>
+        <div class="pixel-badge type-report">
+          <div class="badge-main">REPORT</div>
+          <div class="badge-tab"></div>
+        </div>
         <span class="item-label">レポート 04</span>
       </a>
 
     </div>
 
-    <!-- ▼ 一番下のドット絵（ドラゴンや魔法使いの画像をアップロードしたら表示） -->
+    <!-- ▼ 一番下のドラゴンや魔法使いのドット絵（枠なし） -->
     <div class="art-area">
-      <!-- 画像をアップロードしたら「art.png」をそのファイル名に変えてね -->
       <img src="art.png" alt="Pixel Art" onerror="this.style.display='none';">
     </div>
   </main>
