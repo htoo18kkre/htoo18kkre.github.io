@@ -7,12 +7,21 @@
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 <style>
   body {
-    /* 爽やかで優しい水色 */
-    background-color: #5bc0eb;
+    /* 夜の星空グラデーション＋小さなドット絵の星屑 */
+    background-color: #0d1126;
+    background-image: 
+      radial-gradient(#ffffff 1px, transparent 1px),
+      radial-gradient(#ffe680 1px, transparent 1px),
+      radial-gradient(#8be9fd 1px, transparent 1px),
+      linear-gradient(180deg, #090c1a 0%, #162142 60%, #1e2d59 100%);
+    background-size: 90px 90px, 140px 140px, 190px 190px, 100% 100%;
+    background-position: 0 0, 30px 50px, 70px 20px, 0 0;
+    background-attachment: fixed;
     color: #ffffff;
     font-family: 'DotGothic16', monospace;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
     -webkit-font-smoothing: none;
   }
 
@@ -22,26 +31,27 @@
     padding: 56px 32px 64px;
   }
 
-  /* タイトル */
+  /* タイトル（夜空に浮かぶゴールドのドット文字） */
   header {
     margin-bottom: 44px;
   }
 
   h1 {
     font-size: 2rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     margin: 0;
     font-weight: normal;
-    text-shadow: 3px 3px 0px #2b4c6f;
+    color: #ffe680;
+    text-shadow: 3px 3px 0px #000000;
   }
 
-  /* ボタンのリスト（コンパクトな左寄せ） */
+  /* ボタンリスト（左寄せ・コンパクト） */
   .link-list {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
-    margin-bottom: 60px;
+    gap: 22px;
+    margin-bottom: 64px;
   }
 
   .pixel-item {
@@ -50,71 +60,71 @@
     gap: 16px;
     text-decoration: none;
     color: #ffffff;
-    transition: transform 0.1s ease;
+    transition: transform 0.1s steps(2, start);
   }
 
-  /* 押したときにボタンがポチッと沈む動き */
-  .pixel-item:hover .pixel-btn {
-    transform: translateY(3px);
-    box-shadow: 0 2px 0px #2b4c6f;
+  .pixel-item:hover {
+    transform: translateX(4px);
   }
 
-  /* ✦ オリジナル：ぷっくり立体ドットボタン（ツヤ＆影つき） */
+  /* ✦ オリジナル：RPG風のドット絵バッジ */
   .pixel-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     height: 40px;
-    padding: 0 16px;
+    padding: 0 14px;
     font-size: 1.1rem;
     letter-spacing: 0.08em;
     color: #ffffff;
-    border: 3px solid #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 5px 0px #2b4c6f; /* 立体感を出す濃い青の影 */
     position: relative;
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    border: 2px solid #ffffff;
+    box-shadow: 
+      inset 0 3px 0 rgba(255, 255, 255, 0.35),
+      inset 0 -3px 0 rgba(0, 0, 0, 0.35),
+      4px 4px 0px #000000;
   }
 
-  /* ボタン左上の「キラッ」としたドットのツヤ（ハイライト） */
+  /* ボタンの左端に小さな星のドット飾り */
   .pixel-btn::before {
-    content: "";
-    position: absolute;
-    top: 4px;
-    left: 6px;
-    width: 10px;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.7);
+    content: "✦";
+    font-size: 0.85rem;
+    margin-right: 8px;
+    color: #ffe680;
   }
 
-  /* スライド用（カービィ風のピンク） */
+  /* スライド用（夜空に映えるマジックルビー） */
   .type-slide {
-    background-color: #ff75a0;
+    background-color: #d9386a;
   }
 
-  /* レポート用（ポップなイエローオレンジ系 or パープル系） */
+  /* レポート用（魔導書風のロイヤルブルー） */
   .type-report {
-    background-color: #8a79ff;
+    background-color: #3b5dc9;
   }
 
-  /* 右横のタイトル文字 */
+  /* ボタン右横のタイトル文字 */
   .item-label {
     font-size: 1.05rem;
     letter-spacing: 0.05em;
-    text-shadow: 2px 2px 0px #2b4c6f;
+    text-shadow: 2px 2px 0px #000000;
     white-space: nowrap;
   }
 
-  /* 一番下のイラストエリア（枠なし） */
+  .pixel-item:hover .item-label {
+    color: #ffe680;
+  }
+
+  /* 一番下のドラゴン・魔法使いのドット絵エリア（枠なし） */
   .art-area {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 24px;
   }
 
   .art-area img {
-    max-width: 260px;
+    max-width: 280px;
     width: 100%;
     height: auto;
     display: block;
@@ -158,9 +168,10 @@
 
     </div>
 
-    <!-- ▼ 一番下のドット絵（枠なし） -->
+    <!-- ▼ 一番下のドット絵（ドラゴンや魔法使いの画像をアップロードしたら表示） -->
     <div class="art-area">
-      <img src="boy.png" alt="Pixel Art" onerror="this.style.display='none';">
+      <!-- 画像をアップロードしたら「art.png」をそのファイル名に変えてね -->
+      <img src="art.png" alt="Pixel Art" onerror="this.style.display='none';">
     </div>
   </main>
 
