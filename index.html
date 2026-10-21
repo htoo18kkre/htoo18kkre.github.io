@@ -13,9 +13,6 @@
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* 地面を常に画面の一番下に配置 */
     -webkit-font-smoothing: none;
     -webkit-tap-highlight-color: transparent;
   }
@@ -24,7 +21,7 @@
     width: 100%;
     max-width: 420px;
     margin: 0 auto;
-    padding: 56px 32px 20px;
+    padding: 56px 32px 64px;
     box-sizing: border-box;
   }
 
@@ -47,7 +44,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
-    margin-bottom: 40px;
+    margin-bottom: 56px;
   }
 
   .pixel-item {
@@ -60,10 +57,9 @@
     user-select: none;
   }
 
-  /* ✦ クリック感を出すための立体影ラッパー */
+  /* クリック感を出す立体影ラッパー */
   .badge-shadow {
     display: inline-flex;
-    /* ドットの角に沿った立体的な下影 */
     filter: drop-shadow(0px 5px 0px #142242);
     transition: transform 0.08s steps(2, start), filter 0.08s steps(2, start);
   }
@@ -74,7 +70,6 @@
     align-items: stretch;
     height: 46px;
     position: relative;
-    /* 上端にうっすらハイライトを入れて立体感をアップ */
     box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.3);
     clip-path: polygon(
       0 6px, 3px 6px, 3px 3px, 6px 3px, 6px 0,
@@ -112,11 +107,11 @@
   .badge-tab::before { top: 7px; }
   .badge-tab::after { bottom: 7px; }
 
-  /* ✦ スライド用ボタンの色 */
+  /* スライド用ボタンの色 */
   .type-slide .badge-main { background-color: #f24b59; }
   .type-slide .badge-tab { background-color: #ff8e80; }
 
-  /* ✦ レポート用ボタンの色 */
+  /* レポート用ボタンの色 */
   .type-report .badge-main { background-color: #38b814; }
   .type-report .badge-tab { background-color: #72e647; }
 
@@ -129,7 +124,7 @@
     transition: transform 0.08s steps(2, start), color 0.08s;
   }
 
-  /* ▼ ホバー＆タップ時：カチッと下に沈み込むアクション */
+  /* ホバー＆タップ時の押し込みアクション */
   .pixel-item:hover .badge-shadow,
   .pixel-item:active .badge-shadow {
     transform: translateY(4px);
@@ -142,27 +137,14 @@
     color: #ffe680;
   }
 
-  /* ▼ 画面の一番下に固定されるステージ＆地面エリア */
-  .stage-footer {
-    width: 100%;
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* キャラクター並び（左：ドラゴン、右：男の子） */
+  /* キャラクター並び（地面なし・枠なし） */
   .characters {
     display: flex;
     justify-content: center;
     align-items: flex-end;
     gap: 16px;
     width: 100%;
-    max-width: 420px;
-    padding: 0 20px;
-    box-sizing: border-box;
-    position: relative;
-    z-index: 2;
+    margin-top: 24px;
   }
 
   .characters img {
@@ -171,24 +153,6 @@
     height: auto;
     display: block;
     image-rendering: pixelated;
-    /* ※ドラゴンの絵の下に透明な余白があって浮いて見える場合は、この「-6px」を「-15px」や「-20px」に変えると地面にピタッと着地します */
-    margin-bottom: -6px;
-  }
-
-  /* 画面の端から端・一番底まで続くドット絵の地面 */
-  .pixel-ground {
-    width: 100%;
-    height: 44px;
-    background-color: #5c3a21; /* 土のベース色 */
-    /* ドット絵の芝生と土の模様 */
-    background-image: 
-      linear-gradient(90deg, #48a842 50%, #3b8c36 50%),
-      linear-gradient(90deg, #5c3a21 50%, #4d301b 50%);
-    background-size: 16px 10px, 32px 34px;
-    background-position: 0 0, 0 10px;
-    background-repeat: repeat-x, repeat;
-    border-top: 4px solid #72d65c; /* 芝生の上の明るいドットライン */
-    box-sizing: border-box;
   }
 </style>
 </head>
@@ -247,18 +211,15 @@
         </a>
 
       </div>
-    </main>
-  </div>
 
-  <!-- ▼ 画面の一番下に広がるドット絵ステージ（左にドラゴン、右に男の子、下に地面） -->
-  <div class="stage-footer">
-    <div class="characters">
-      <!-- 左：ドラゴンの画像 -->
-      <img src="dragon.PNG" alt="Dragon" onerror="this.style.display='none';">
-      <!-- 右：男の子の画像 -->
-      <img src="boy.PNG" alt="Boy" onerror="this.style.display='none';">
-    </div>
-    <div class="pixel-ground"></div>
+      <!-- ▼ ドット絵エリア（左に月、右に男の子、地面なし） -->
+      <div class="characters">
+        <!-- 左：月の画像 -->
+        <img src="moon.PNG" alt="Moon" onerror="this.style.display='none';">
+        <!-- 右：男の子の画像 -->
+        <img src="boy.PNG" alt="Boy" onerror="this.style.display='none';">
+      </div>
+    </main>
   </div>
 
 </body>
